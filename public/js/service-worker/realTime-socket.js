@@ -1,6 +1,6 @@
 var realTime;
 $(document).ready(function() {
-	realTime = io.connect('http://localhost:3000');
+	realTime = io.connect('http://xploitcode.herokuapp.com');
 	realTime.emit('join', {'room': $('#pen').val()});
 	realTime.on('joined', function(data){console.log(data);});
 	realTime.on('updateRealTime', function(data){
