@@ -74,6 +74,13 @@ aside{
   box-shadow: 0 0 0 0.1rem rgb(204,0,255);
 }
 
+.input-group-prepend span{
+    width: 50px;
+    background-color: #E227FE;
+    color: black;
+    border: 0 !important;
+}
+
 /*Adaptar a pantalla de celular*/
 @media screen and (max-width: 575px) {
 	.post .thumb {
