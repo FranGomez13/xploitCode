@@ -28,7 +28,7 @@
 <script>
 $('#btn').click(function(){
 	$.ajax({
-		url: `/user/${$('#userId').val()}`,
+		url: `/user/profile/${$('#userId').val()}`,
 		data:{'plan': $('#typeAccount').val(), 'name': $('#username').val()},
 		method: 'PUT',
 		success:function(){

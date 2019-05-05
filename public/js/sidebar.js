@@ -50,7 +50,7 @@ $(document).ready(function(){
 
 function profile(){
   $.ajax({
-    url: `/user/${$('#userId').val()}`,
+    url: `/user/profile/${$('#userId').val()}`,
     method: 'GET',
     beforeSend: function(){
        $("#popup-profile").dialog('open').html("<p>Please Wait...</p>");

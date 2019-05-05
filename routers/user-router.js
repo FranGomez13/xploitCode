@@ -35,7 +35,7 @@ router.get('/', mw.notLogin, (req, res) => {
     .catch(error=>{});
 });
 
-router.get('/:id', (req, res)=>{
+router.get('profile/:id', (req, res)=>{
     typeAccount.find().then(data=>{
         res.render('pages/profile',{
             nombre: req.session.passport.user.name,
@@ -45,7 +45,7 @@ router.get('/:id', (req, res)=>{
     }).catch(error=>{});
 });
 
-router.put('/:id', (req, res)=>{
+router.put('profile/:id', (req, res)=>{
     user.updateOne(
         {"_id": ObjectId(req.session.passport.user._id)},
         {$set:
