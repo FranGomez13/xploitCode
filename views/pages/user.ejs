@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<% include ../partials/head %>
+	<link rel="stylesheet" type="text/css" href="/css/user.css">
+	<title>Xploit Code</title>
+</head>
+<body>
+	<div class="page-wrapper chiller-theme toggled">
+		<% include ../partials/navbar %>
+		<main class="page-content">
+			<div class="container-fluid">
+				<div id="contenido" class="col-12">
+					<h1 id="title-content"><%= name %></h1>
+					<hr>
+					<div id="div-contenido" class="row">
+						<% if (name === 'projects') { %>
+							<% for (var i=0; i<folders.length; i++) { %>
+								<div class="col-6 col-sm-4 col-md-3 col-lg-2">
+						        	<center>
+						            	<a href="/pen/<%= folders[i]._id %>">
+						            		<i class="fas fa-code fa-5x"></i><br><center><%= folders[i].name %></center>
+						            	</a>
+						          	</center>
+						        </div>
+							<% } %>
+						<% } else if (name === "shared with me") {%>
+							<% for (var i=0; i<folders.length; i++) { %>
+								<div class="col-6 col-sm-4 col-md-3 col-lg-2">
+		        					<center>
+		            					<a onclick="return loadFile('/user/file/<%= folders[i]._id %>', '<%= folders[i].name %>')">
+		              						<%- folders[i].typeFile[0].icon %><br><center><%= folders[i].name %></center>
+		            					</a>
+		          					</center>
+		        				</div>
+	        				<% } %>
+						<% } else { %>
+							<% if (name !== 'main') { %>
+								<div class="col-6 col-sm-4 col-md-3 col-lg-2">
+	          						<center>
+	            						<a onclick="return changeFolder('/user/folder/<%= parentId %>', '<%= parentName%>')">
+	              							<i class="fas fa-folder-open fa-5x"></i><br><center>...</center>
+	            						</a>
+	          						</center>
+	        					</div>
+							<% } %>
+							<% for (var i=0; i<folders.length; i++) { %>
+								<div class="col-6 col-sm-4 col-md-3 col-lg-2">
+	          						<center>
+	            						<a onclick="return changeFolder('/user/folder/<%= folders[i]._id %>', '<%= folders[i].name %>')">
+	              							<i class="fas fa-folder fa-5x"></i><br><center><%= folders[i].name %></center>
+	            						</a>
+	          						</center>
+	        					</div>
+							<% } %>
+							<% for (var i=0; i<files.length; i++) { %>
+								<div class="col-6 col-sm-4 col-md-3 col-lg-2">
+							        <center>
+							            <a onclick="return loadFile('/user/file/<%= files[i]._id %>', '<%= files[i].name %>')">
+							            	<%- files[i].typeFile[0].icon %><br><center><%= files[i].name %></center>
+							            </a>
+							        </center>
+							    </div>
+							<% } %>
+						<% } %>
+					</div>
+				</div>
+			</div>
+		</main>
+		<!-- page-content" -->
+	</div>
+	<div id="popupFile"></div>
+	<input type="text" id="parentId" hidden value="<%= parentId %>">
+<% include ../partials/scripts %>
+	<script src="/js/controler-user.js"></script>
+</body>
+</html>

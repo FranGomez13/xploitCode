@@ -1,0 +1,12 @@
+<label for="slcUser">Select User: </label>
+<select name="slcUser" id="slcUser" class="form-control">
+	<% for (var i=0; i<users.length; i++) { %>
+	<option value="<%= users[i]._id %>"><%= users[i].name %></option>
+	<% } %>
+</select><hr>
+<button onclick="sharedFile()" type="button" class="btn btn-outline-purple btn-sm form-control">
+	Confirm Shared
+</button><hr>
+<button onclick="closeConfirmModal()" type="button" class="btn btn-secondary btn-sm form-control">
+	Cancel
+</button>

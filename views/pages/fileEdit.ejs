@@ -1,0 +1,60 @@
+<p hidden id="content" style="white-space: pre-line"><%= file[0].content %></p>
+<div id="confirm"></div>
+<div class="container-fluid" id="principal" style="display: none;">
+<div class="row">
+	<div class="btn-group col-md-12" role="group" aria-label="Basic example">
+		<button onclick="saveFile('<%= file[0]._id %>')" type="button" class="btn btn-secondary btn-sm">
+			<i class="fas fa-save"></i>
+		</button>
+		<a href="/file/<%= file[0]._id %>/download" class="btn btn-secondary btn-sm" style="color: white;">
+			<i class="fas fa-file-download"></i>
+		</a>
+		<button onclick="openConfirmModal('<%= file[0]._id %>', 'shared')" type="button" class="btn btn-secondary btn-sm">
+			<i class="fas fa-share-square"></i>
+		</button>
+		<button onclick="openConfirmModal('<%= file[0]._id %>', 'delete')" type="button" class="btn btn-danger btn-sm">
+			<i class="fas fa-trash-alt"></i>
+		</button>
+		<button onclick="closeFile()" type="button" class="btn btn-secondary btn-sm">
+			<i class="fas fa-power-off"></i>
+		</button>
+	</div>
+</div><hr>
+<div class="row">
+	<div class="col-12">
+		<textarea id="txtFile"></textarea>
+	</div>
+</div>
+<script src="/plugin/codemirror/mode/xml/xml.js"></script>
+<script src="/plugin/codemirror/mode/python/python.js"></script>
+<script src="/plugin/codemirror/mode/clike/clike.js"></script>
+<script src="/plugin/codemirror/mode/javascript/javascript.js"></script>
+<script src="/plugin/codemirror/mode/css/css.js"></script>
+<script>
+	var editor;
+	$(document).ready(function(){
+		var code = $("#txtFile")[0];
+		editor = CodeMirror.fromTextArea(code, {
+			lineNumbers : true,
+			<% if (file[0].typeFile[0].name == 'Python') {%>
+			mode:  "text/x-python",
+			<% }else if (file[0].typeFile[0].name == 'Java'){ %>
+			mode:  "text/x-java",
+			<% }else if (file[0].typeFile[0].name == 'C++'){ %>
+			mode:  "text/x-c++src",
+			<% }else if (file[0].typeFile[0].name == 'CSS'){ %>
+			mode:  "css",
+			<% }else if (file[0].typeFile[0].name == 'HTML'){ %>
+			mode:  "xml",
+			htmlmode: true,
+			<% }else if (file[0].typeFile[0].name == 'Javascript'){ %>
+			mode:  "javascript",
+			<% } %>
+			matchBrackets: true,
+			autoCloseBrackets: true
+		});
+		editor.setOption("theme", "dracula");
+		$("#principal").css("display", "block");
+		editor.setValue($('#content').text());
+	});
+</script>

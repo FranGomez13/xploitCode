@@ -1,0 +1,33 @@
+<input type="text" id="txtName" name="txtName" class="form-control" placeholder="Name"><br>
+<label for="slcFolder">Folder: </label>
+<select name="slcFolder" id="slcFolder" class="form-control">
+	<% for(var i=0; i<data.length; i++){ %>
+		<option value="<%= data[i]._id %>"><%= data[i].name %></option>
+	<% } %>
+</select><br>
+<label for="slcType">Language: </label>
+<select name="slcType" id="slcType" class="form-control">
+	<% for(var i=0; i<file.length; i++){ %>
+		<option value="<%= file[i]._id %>"><%= file[i].name %></option>
+	<% } %>
+</select><br>
+<button id="btnSave" class="btn btn-outline-purple form-control">Save</button><hr>
+<a onclick="return modalOpen('/new')" class="btn btn-secondary form-control">Back</a><hr>
+
+<script>
+	$('#btnSave').click(function(){
+		$('#popup').dialog("close");
+		$.ajax({
+			url: '/file',
+			data: {"name": $('#txtName').val(),
+				   "_idParent": $('#slcFolder').val(),
+				   "parent": $("#slcFolder option:selected").text(),
+				   "_idType": $('#slcType').val()
+				},
+			method: 'POST',
+			success: function(data){
+				socket.emit('fileCreate', {clientID: $('#clientID').val()});
+			}
+		});
+	});
+</script>

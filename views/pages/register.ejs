@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<% include ../partials/head %>
+	<link rel="stylesheet" type="text/css" href="/css/login.css">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap-social.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<title>Xploit Code Register</title>
+</head>
+<body>
+	<nav class="navbar navbar-expand-md">
+		<a class="navbar-brand" href="/">
+			<img src="img/logo.png" alt="">
+		</a>
+		<ul class="navbar-nav mr-auto"></ul>
+		<a href="/login" class="btn btn-outline-secondary my-2 my-sm-0">Log In</a>&nbsp;&nbsp;
+	</nav>
+	<div class="container">
+		<div class="d-flex justify-content-center h-100">
+			<div class="card">
+				<div class="card-header">
+					<h4 class="card-title mt-3 text-center">Create Account</h4>
+					<p class="text-center">Get started with your free account</p>
+					<p>
+						<a class="btn btn-block btn-social btn-facebook" href="/auth/facebook">
+	    					<span><i class="fab fa-facebook"></i></span>Sign Up with Facebook
+	  					</a>
+						<a class="btn btn-block btn-social btn-github" href="/auth/github">
+	    					<span><i class="fab fa-github"></i></span>Sign Up with Github
+	  					</a>
+						<!--<a class="btn btn-block btn-social btn-twitter disabled">
+	    					<span><i class="fab fa-twitter"></i></span>Sign Up with Twitter
+	  					</a>-->
+  					</p>
+				</div>
+				<p class="text-center">OR</p>
+				<% if (message.length > 0){ %>
+					<div class="alert alert-danger">
+						<%= message %>
+					</div>
+				<% } %>
+				<div class="card-body">
+					<form action="/auth/register" method="post">
+						<div class="input-group form-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+							<input type="text" name="username" class="form-control" placeholder="UserName">
+						</div>
+						<div class="input-group form-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-envelope"></i></span>
+							</div>
+							<input type="email" name="email" class="form-control" placeholder="E-Mail">
+						</div>
+						    <div class="form-group input-group">
+						    	<div class="input-group-prepend">
+								    <span class="input-group-text"> <i class="fa fa-money-check"></i></span>
+								</div>
+								<select name="typeAccount" class="custom-select">
+									<% for(var i=0; i<type.length; i++) {%>
+								    	<option value="<%= type[i] %>"><%= type[i].name %></option>
+								    <% } %>
+								</select>
+						    </div>
+						<div class="input-group form-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<input type="password" name="password" class="form-control" placeholder="Create Password">
+						</div>
+						<div class="input-group form-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<input type="password" name="password1" class="form-control" placeholder="Repeat Password">
+						</div>
+						<div class="form-group">
+							<input type="submit" value="Submit" class="btn float-right btn-outline-purple">
+						</div>
+					</form>
+				</div>
+				<div class="card-footer">
+					<div class="d-flex justify-content-center links">
+						Have an account?<a href="/login">Log In</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><br ><br ><br ><br ><br ><br ><br ><br ><br >
+</body>
+</html>

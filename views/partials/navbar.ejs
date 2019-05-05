@@ -1,0 +1,110 @@
+		<a id="show-sidebar" class="btn btn-sm btn-outline-purple" style="z-index: 10;">
+			<i class="fas fa-bars"></i>
+		</a>
+		<nav id="sidebar" class="sidebar-wrapper">
+			<div class="sidebar-content">
+				<div class="sidebar-brand">
+					<a href="/"><img src="/img/logo.png"></a>
+					<div id="close-sidebar">
+						<i class="fas fa-times"></i>
+					</div>
+				</div>
+				<div class="sidebar-header">
+					<div class="user-pic">
+						<% if (locals.avatar) {%>
+						<a href="/user"><img class="img-responsive img-rounded" src="<%= avatar %>"></a>
+						<% } %>
+					</div>
+					<div class="user-info">
+						<% if (locals.nombre) {%>
+						<span class="user-name"><%= nombre %></span>
+						<% } %>
+						<!--<span class="user-role">Administrator</span>
+						<span class="user-status">
+						<i class="fa fa-circle"></i>
+							<span>Online</span>
+						</span>-->
+					</div>
+				</div>
+				<!-- sidebar-header-->
+				<!--<div class="sidebar-search">
+					<div>
+						<div class="input-group">
+							<input disabled type="search" class="form-control search-menu" placeholder="Search...">
+							<div class="input-group-append">
+								<span class="input-group-text">
+									<i class="fa fa-search" aria-hidden="true"></i>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>-->
+				<!-- sidebar-search-->
+				<div class="sidebar-menu">
+					<ul>
+						<li class="header-menu"><span>General</span></li>
+						<li>
+							<a onclick="return modalOpen('/new')">
+								<i class="fas fa-plus"></i>
+								<span>New</span>
+							</a>
+						</li>
+						<li class="sidebar-dropdown">
+							<a>
+								<i class="fa fa-folder"></i>
+								<span>Folders</span>
+							</a>
+							<div class="sidebar-submenu">
+								<ul id="folders"></ul>
+							</div>
+						</li>
+						<li>
+							<a onclick="return changeFolder('/user/projects', 'projects')">
+								<i class="fas fa-project-diagram"></i>
+								<span>Projects</span>
+							</a>
+						</li>
+						<li>
+							<a onclick="return changeFolder('/user/sharedwithme', 'shared with me')">
+								<i class="fas fa-share-square"></i>
+								<span>Shared With Me</span>
+							</a>
+						</li>
+						<!--<li>
+							<a onclick="return changeFolder('/user/favorite', 'favorite')">
+								<i class="fas fa-star"></i>
+								<span>Favorite</span>
+							</a>
+						</li>
+						<li>
+							<a href="/user/trash">
+								<i class="fas fa-trash"></i>
+								<span>Trash</span>
+							</a>
+						</li>-->
+					</ul>
+				</div>
+				<!-- sidebar-menu-->
+			</div>
+			<!-- sidebar-content-->
+			<div class="sidebar-footer">
+				<!--<a>
+					<i class="fa fa-bell"></i>
+					<span class="badge badge-pill badge-warning notification">3</span>
+				</a>
+				<a>
+					<i class="fa fa-envelope"></i>
+					<span class="badge badge-pill badge-success notification">7</span>
+				</a>-->
+				<a>
+					<i class="fa fa-cog"></i>
+					<!--<span class="badge-sonar"></span>-->
+				</a>
+				<a href="/logout"><i class="fa fa-power-off"></i></a>
+			</div>
+		</nav>
+		<div id="popup" title="New"></div>
+		<div id="notification" class="position-absolute w-100 d-flex flex-column p-4"></div>
+		<input type="text" id="userId" hidden value="<%= userId %>">
+		<input type="text" id="clientID" hidden value="">
+		<!-- sidebar-wrapper-->

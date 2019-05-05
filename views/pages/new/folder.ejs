@@ -1,0 +1,25 @@
+<input type="text" id="txtName" name="txtName" class="form-control" placeholder="Name"><br>
+<label for="slcFolder">Parent: </label>
+<select name="slcFolder" id="slcFolder" class="form-control">
+	<% for(var i=0; i<data.length; i++){ %>
+		<option value="<%= data[i]._id %>"><%= data[i].name %></option>
+	<% } %>
+</select><br>
+<button id="btnSave" class="btn btn-outline-purple form-control">Save</button><hr>
+<a onclick="return modalOpen('/new')" class="btn btn-secondary form-control">Back</a>
+
+<script>
+	$('#btnSave').click(function(){
+		$('#popup').dialog("close");
+		$.ajax({
+			url: '/folder',
+			data: {"name": $('#txtName').val(),
+				   "_id": $('#slcFolder').val(),
+				   "parent": $("#slcFolder option:selected").text()},
+			method: 'POST',
+			success: function(data){
+				socket.emit('folderCreate', {clientID: $('#clientID').val()});
+			}
+		});
+	});
+</script>

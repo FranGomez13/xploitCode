@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<% include ../partials/head %>
+	<title>Xploit Code</title>
+</head>
+<body>
+	<div class="page-wrapper chiller-theme toggled">
+		<% include ../partials/navbar %>
+		<!-- sidebar-wrapper-->
+		<main class="page-content">
+			<div class="container-fluid" id="principal" style="display: none;">
+				<div class="row">
+					<div class="btn-group col-md-12" role="group" aria-label="Basic example">
+						<button id="btnPlayPen" type="button" class="btn btn-secondary">
+							<i class="fas fa-play"></i> RUN
+						</button>
+						<button id="btnSavePen" type="button" class="btn btn-secondary">
+							<i class="fas fa-save"></i> SAVE
+						</button>
+						<!--<button id="btnSharePen" type="button" class="btn btn-secondary disabled">
+							<i class="fas fa-share-square"></i> SHARE
+						</button>-->
+						<button id="btnDeletePen" type="button" class="btn btn-danger">
+							<i class="fas fa-trash-alt"></i> DELETE
+						</button>
+						<button id="btnCancelPen" type="button" class="btn btn-secondary">
+							<i class="fas fa-power-off"></i> CANCEL
+						</button>
+					</div>
+				</div><hr>
+				<div class="row">
+					<div class="col-md-12 col-lg-4">
+						<h3 style="color: purple;">HTML</h3>
+						<textarea id="txt-html"></textarea>
+					</div>
+					<div class="col-sm-12 col-md-6 col-lg-4">
+						<h3 style="color: purple;">JavaScript</h3>
+						<textarea id="txt-js"></textarea>
+					</div>
+					<div class="col-sm-12 col-md-6 col-lg-4">
+						<h3 style="color: purple;">CSS</h3>
+						<textarea id="txt-css"></textarea>
+					</div>
+				</div>
+				<div class="col-12">
+		        	<h3 style="color: purple;">Preview:</h3>
+		        	<div id="preview">
+		        		<iframe frameborder="1" style="width: 100%; height: 300px; background: white;"></iframe>
+		        	</div>
+		    	</div>
+		    </div>
+		</main>
+		<div id="confirm"></div>
+		<!-- page-content" -->
+	</div>
+	<input type="text" id="pen" hidden value="<%= id %>">
+	<p hidden id="HTML" style="white-space: pre-line"><%= project[0].html %></p>
+	<p hidden id="JS" style="white-space: pre-line"><%= project[0].js %></p>
+	<p hidden id="CSS" style="white-space: pre-line"><%= project[0].css %></p>
+	<% include ../partials/scripts %>
+	<script src="/js/service-worker/realTime-socket.js"></script>
+	<script src="/plugin/codemirror/mode/javascript/javascript.js"></script>
+	<script src="/plugin/codemirror/mode/css/css.js"></script>
+	<script src="/plugin/codemirror/mode/xml/xml.js"></script>
+	<script src="/js/controler-pen.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+#contenido{
+	background: rgba(255,0,255,0.1);
+	border-radius: 5px;
+	height: 550px;
+	margin: 8px;
+	color: white;
+	overflow-y: scroll;
+}
+
+a{
+	color: white;
+}
+a:hover{
+	color: rgba(255,0,255,0.3);
+}
+
+#div-contenido a:hover{
+	color: rgba(255,0,255,0.3);	
+}

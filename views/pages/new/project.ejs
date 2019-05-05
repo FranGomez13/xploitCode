@@ -1,0 +1,17 @@
+<input type="text" id="txtName" name="txtName" class="form-control" placeholder="Name"><br>
+<button id="btnSave" class="btn btn-outline-purple form-control">Save</button><hr>
+<a onclick="return modalOpen('/new')" class="btn btn-secondary form-control">Back</a>
+
+<script>
+	$('#btnSave').click(function(){
+		$('#popup').dialog("close");
+		$.ajax({
+			url: '/project',
+			data: {"name": $('#txtName').val()},
+			method: 'POST',
+			success: function(data){
+				socket.emit('projectCreate', {clientID: $('#clientID').val()});
+			}
+		});
+	});
+</script>
