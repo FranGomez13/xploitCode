@@ -38,8 +38,28 @@ $(document).ready(function(){
     resizable: false,
     position: { my: "center", at: "top" }
   });
+  $("#popup-profile").dialog({
+    hide: 'fold',
+    show: 'fold',
+    autoOpen: false,
+    resizable: false,
+    position: { my: "center", at: "top" }
+  });
   refreshFolder();
 });
+
+function profile(){
+  $.ajax({
+    url: `/user/${$('#userId').val()}`,
+    method: 'GET',
+    beforeSend: function(){
+       $("#popup-profile").dialog('open').html("<p>Please Wait...</p>");
+    },
+    success: function(data) {
+        $('#popup-profile').html(data);
+    }
+  });
+}
 
 function modalOpen(url){
   $.ajax({
