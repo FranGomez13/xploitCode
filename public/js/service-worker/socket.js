@@ -1,7 +1,7 @@
 var socket;
 $(document).ready(function() {
 	var mensajes = [];
-	socket = io.connect('http://xploitcode.herokuapp.com');
+	socket = io.connect('xploitcode.herokuapp.com');
 	socket.on('welcome_event', function (clientID) {
 		$('#clientID').val(clientID);
 	});
