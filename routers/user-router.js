@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const folder = require('../models/folder');
 const file = require('../models/file');
-const project = require('../models/project')
+const user = require('../models/user');
+const typeAccount = require('../models/typeAccount');
+const project = require('../models/project');
 const ObjectId = require('mongoose').Types.ObjectId;
 const mw = require('../middlewares/auth-middleware');
 
@@ -31,6 +33,30 @@ router.get('/', mw.notLogin, (req, res) => {
         .catch(error=>{});
     })
     .catch(error=>{});
+});
+
+router.get('/:id', (req, res)=>{
+    typeAccount.find().then(data=>{
+        res.render('pages/profile',{
+            nombre: req.session.passport.user.name,
+            userId: req.session.passport.user._id,
+            type: data
+        })
+    }).catch(error=>{});
+});
+
+router.put('/:id', (req, res)=>{
+    user.updateOne(
+        {"_id": ObjectId(req.session.passport.user._id)},
+        {$set:
+            {
+                "name": req.body.name,
+                "plan": req.body.plan
+            }
+        }
+    )
+    .then(data=>{res.send('hola');})
+    .catch(err=>{})
 });
 
 router.get('/:id/folders', (req, res)=>{

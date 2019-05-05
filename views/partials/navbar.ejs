@@ -96,7 +96,7 @@
 					<i class="fa fa-envelope"></i>
 					<span class="badge badge-pill badge-success notification">7</span>
 				</a>-->
-				<a>
+				<a onclick="return profile()">
 					<i class="fa fa-cog"></i>
 					<!--<span class="badge-sonar"></span>-->
 				</a>
@@ -104,6 +104,7 @@
 			</div>
 		</nav>
 		<div id="popup" title="New"></div>
+		<div id="popup-profile" title="Profile"></div>
 		<div id="notification" class="position-absolute w-100 d-flex flex-column p-4"></div>
 		<input type="text" id="userId" hidden value="<%= userId %>">
 		<input type="text" id="clientID" hidden value="">

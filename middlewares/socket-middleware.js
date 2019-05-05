@@ -2,6 +2,11 @@ module.exports = function(socketIO){
 	socketIO.on('connection', (socket)=>{
 		socket.emit('welcome_event', socket.id);
 
+		socket.on('profileUpdate', (data)=>{
+			socket.join(data.clientID);
+			socketIO.sockets.in(data.clientID).emit('profileUpdateServer','Profile Update Success!');
+		});
+
 		socket.on('fileSave', (data)=>{
 			socket.join(data.clientID);
 			socketIO.sockets.in(data.clientID).emit('fileSaveServer','File Save Success!');
